@@ -11,7 +11,8 @@ The goal of MSigDBOrthology is to ...
 You can install the released version of MSigDBOrthology from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("MSigDBOrthology")
+library(devtools)
+devtools::install_github('https://github.com/TamasKiss26/MSigDBOrthology')
 ```
 
 ## Example
