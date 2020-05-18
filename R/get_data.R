@@ -1,4 +1,4 @@
-#'
+#' get the latest data from the MSigDB website
 #'
 #'
 #'
@@ -9,17 +9,14 @@ getMSigDB <- function(){
 
 }
 
+#' get the latest data form the HCOP website
 #'
+#' @param species
 #'
-#'
-#'
-#'
+#' @param saveto
 #'
 
-getHCOP <- function(species){
+getHCOP <- function(species = 'mouse', saveto){
 
-  path('ftp://ftp.ebi.ac.uk/pub/databases/genenames/hcop/')
-
-  paste(species, '')
 
 }
