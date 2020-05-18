@@ -3,13 +3,13 @@
 #' This function gets two files: one is downloaded from the MSigDB, it is .gmt file, the other is a .txt file downloaded form the HCOP database.
 #'
 #'
-#' @param msigdbPath
+#' @param msigdbPath path to the MSigDB file
 #'
-#' @param hcopPaht
+#' @param hcopPaht path to the hcop annotation file
 #'
+#' @param idType 'entrez' or 'ensembl'
 #'
-#'
-convertMSigDB <- function(msigdbPath, hcopPath){
+convertMSigDB <- function(msigdbPath, hcopPath, idType = 'ensembl'){
 
   # get msigdb data
   msigdb <- GSEABase::getGmt(msigdbPath)
@@ -29,7 +29,7 @@ convertMSigDB <- function(msigdbPath, hcopPath){
 
       altID <- hcop%>%
         dplyr::filter(human_entrez_gene %in% origID)%>%
-        dplyr::pull('mouse_entrez_gene')%>%
+        dplyr::pull(paste('mouse_', idType, '_gene', sep = ''))%>%
         base::unique()
 
       altID <- altID[!altID == '-']
