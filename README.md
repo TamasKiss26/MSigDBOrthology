@@ -1,8 +1,7 @@
 
 # MSigDBOrthology
 
-
-The goal of MSigDBOrthology is to ...
+MSigDB
 
 ## Installation
 
