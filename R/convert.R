@@ -41,7 +41,7 @@ convertMSigDB <- function(msigdbPath, hcopPath, idType = 'ensembl'){
 
   )
 
-  res <- GSEABase::GeneSetCollection(res)
+  #res <- GSEABase::GeneSetCollection(res)
 
   rm(msigdb, hcop)
 
