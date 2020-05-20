@@ -18,21 +18,22 @@ convertMSigDB <- function(msigdbPath, hcopPath, idType = 'ensembl'){
   # get hcop data
   hcop <- readr::read_delim(hcopPath, delim = '\t')
 
-  pb <- dplyr::progress_estimated(length(msigdb))
+  # progress bar estimation
+  pb <- dplyr::progress_estimated(base::length(msigdb))
 
   res <- purrr::map2(
     .x = msigdb,
     .y = names(msigdb),
     .f = function(origID, nm){
 
-      pb$tick()$print()
+      pb$tick()$print() # progress bar
 
       altID <- hcop%>%
         dplyr::filter(human_entrez_gene %in% origID)%>%
-        dplyr::pull(paste('mouse_', idType, '_gene', sep = ''))%>%
+        dplyr::pull(base::paste('mouse_', idType, '_gene', sep = ''))%>%
         base::unique()
 
-      altID <- altID[!altID == '-']
+      altID <- altID[!altID == '-'] # drop '-' cells
 
       altID <- GSEABase::GeneSet(altID, setName = nm)
 
@@ -41,7 +42,7 @@ convertMSigDB <- function(msigdbPath, hcopPath, idType = 'ensembl'){
 
   )
 
-  #res <- GSEABase::GeneSetCollection(res)
+  res <- GSEABase::GeneSetCollection(res)
 
   rm(msigdb, hcop)
 
